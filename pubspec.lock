@@ -44,19 +44,21 @@ packages:
   dart_rfid_library:
     dependency: "direct main"
     description:
-      path: "../dart_rfid_library"
-      relative: true
-    source: path
-    version: "2.0.0"
+      path: "."
+      ref: "2.1.0"
+      resolved-ref: d065a551634d5e8fc5475009d9f6ee61037fb287
+      url: "https://github.com/metratec/dart_rfid_library.git"
+    source: git
+    version: "2.1.0"
   dart_rfid_utils:
     dependency: transitive
     description:
       path: "."
       ref: "1.0.0"
-      resolved-ref: "459103d2ad46c11355d6e5c71129c6551d80c763"
-      url: "https://gitlab.metratec.com/dart-libraries/dart_rfid_utils.git"
+      resolved-ref: "24194d4a2341d72367e9e83a56797f69d0554217"
+      url: "https://github.com/metratec/dart_rfid_utils.git"
     source: git
-    version: "0.0.2"
+    version: "1.0.0"
   dylib:
     dependency: transitive
     description:
@@ -190,9 +192,11 @@ packages:
   metratec_device:
     dependency: "direct main"
     description:
-      path: "../metratec_device"
-      relative: true
-    source: path
+      path: "."
+      ref: "3.3.0"
+      resolved-ref: "0bebafd3418a9e1d561ec3e3ef9a6443d41e3ba4"
+      url: "https://github.com/metratec/metratec_device.git"
+    source: git
     version: "3.3.0"
   path:
     dependency: transitive

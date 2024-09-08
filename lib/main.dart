@@ -6,7 +6,7 @@ import 'package:usb_serial/usb_serial.dart';
 
 import 'package:dart_rfid_library/reader_library.dart';
 import 'package:dart_rfid_utils/src/uhf_inventory_result.dart';
-import 'package:dart_rfid_library/src/reader_uhf/at-proto/deskid_uhf_v2_e.dart';
+import 'package:dart_rfid_library/src/reader_uhf/at-proto/pulsar_lr.dart';
 
 void main() {
   runApp(const MyApp());
@@ -87,7 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
       UsbSettings usbSettings = UsbSettings(_device!.deviceId!);
       CommInterface commInterface = UsbInterface(usbSettings);
 
-      _reader = ReaderDeskIdUhfV2E(commInterface);
+      _reader = ReaderPulsarLR(commInterface);
 
       try {
         if (await _reader!.connect(onError: _onConnectionError)) {

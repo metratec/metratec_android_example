@@ -1,4 +1,4 @@
-# Metratec Flutter RFID Demo
+# Metratec Android Flutter RFID Demo
 
 A short demo that shows how to use the Metratec Dart RFID library in a typical Android project via USB Serial.
 

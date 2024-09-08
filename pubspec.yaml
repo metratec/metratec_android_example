@@ -3,7 +3,7 @@ description: "A small example on how to use Metratec devices with Android"
 
 publish_to: 'none'
 
-version: 1.0.0+1
+version: 1.0.0
 
 environment:
   sdk: '>=3.4.4 <4.0.0'
@@ -15,16 +15,16 @@ dependencies:
   logger: any
   
   metratec_device:
-    path: ../metratec_device
-  #  git:
-  #    url: https://gitlab.metratec.com/dart-libraries/metratec_device.git
-  #    ref: 3.2.1
+  #  path: ../metratec_device
+    git:
+      url: https://github.com/metratec/metratec_device.git
+      ref: 3.3.0
   
   dart_rfid_library:
-    path: ../dart_rfid_library
-  #  git:
-  #    url: https://gitlab.metratec.com/dart-libraries/dart_rfid_library.git
-  #    ref: 2.0.0
+  # path: ../dart_rfid_library
+    git:
+      url: https://github.com/metratec/dart_rfid_library.git
+      ref: 2.1.0
   
   usb_serial: ^0.5.2
 
