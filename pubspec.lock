@@ -45,11 +45,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "2.1.0"
-      resolved-ref: d065a551634d5e8fc5475009d9f6ee61037fb287
+      ref: "2.1.1"
+      resolved-ref: "57014b8d84df203d3b7ef63147a390e53b4841e5"
       url: "https://github.com/metratec/dart_rfid_library.git"
     source: git
-    version: "2.1.0"
+    version: "2.1.1"
   dart_rfid_utils:
     dependency: transitive
     description:
@@ -91,11 +91,12 @@ packages:
   flutter_libserialport:
     dependency: transitive
     description:
-      name: flutter_libserialport
-      sha256: "20c320dcde8592a16f9badc0cacad61b1fb283dbec647b6ebfc1020f8274c67b"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.4.0"
+      path: "."
+      ref: "0.5.0"
+      resolved-ref: "6d8b2807c132041da9fa06c34bce8a6f831ff1f5"
+      url: "https://github.com/snabble/flutter_libserialport.git"
+    source: git
+    version: "0.5.0"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -193,11 +194,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "3.3.0"
-      resolved-ref: "0bebafd3418a9e1d561ec3e3ef9a6443d41e3ba4"
+      ref: "3.3.1"
+      resolved-ref: fb0446cb24e636bb5e4582b8afd7886b5f8bcbd6
       url: "https://github.com/metratec/metratec_device.git"
     source: git
-    version: "3.3.0"
+    version: "3.3.1"
   path:
     dependency: transitive
     description:

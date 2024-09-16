@@ -18,13 +18,13 @@ dependencies:
   #  path: ../metratec_device
     git:
       url: https://github.com/metratec/metratec_device.git
-      ref: 3.3.0
+      ref: 3.3.1
   
   dart_rfid_library:
   # path: ../dart_rfid_library
     git:
       url: https://github.com/metratec/dart_rfid_library.git
-      ref: 2.1.0
+      ref: 2.1.1
   
   usb_serial: ^0.5.2
 
