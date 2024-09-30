@@ -18,12 +18,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'metraTec RFID Demo',
+      title: 'METRATEC RFID Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 39, 0, 106)),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'metraTec RFID Demo'),
+      home: const MyHomePage(title: 'METRATEC RFID Demo'),
     );
   }
 }
@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
   List<Widget> _deviceList = [];
 
   UsbDevice? _device;
-  UhfReader? _reader;
+  UhfReaderAt? _reader;
   bool _readerConnected = false;
   Logger logger = Logger();
 
@@ -105,10 +105,16 @@ class _MyHomePageState extends State<MyHomePage> {
     return true;
   }
 
-  Future<void> doInventory() async {
+  Future<void> doSimpleInventory() async {
     logger.i("Setting antenna and power");
     try {
+      // Set the region to ETSI/EU - choose FCC if in the US
+      await _reader!.setRegion("ETSI");
+
+      // Choose Antenna one to be active (default), can be 1-4 on PulsarLR
       await _reader!.setInvAntenna(1);
+
+      // The output power in dBm. Can be 0 - 30 on PulsarLR. See product datasheet for other products
       await _reader!.setOutputPower([15]);
     } catch (err) {
       logger.e(err);
@@ -117,6 +123,27 @@ class _MyHomePageState extends State<MyHomePage> {
     logger.i("Getting inventory");
     try {
       List<UhfInventoryResult>? tagList = await _reader?.inventory();
+      tagList?.forEach((tagResult) {
+        // Code to be executed for each element on the collection
+        logger.i(tagResult.tag.epc);
+      });
+    } catch (err) {
+      logger.e(err);
+    }
+  }
+
+  Future<void> doMultiplexInventory() async {
+    try {
+      // configure the reader to multiplexer over antennas during MINV command, here antennas 1, 2 and 3
+      // Please make sure that there are antenna connected to each port. Otherwise, you will get an "Operation Error"
+      await _reader!.setMuxAntenna([1, 2, 3]);
+    } catch (err) {
+      logger.e(err);
+    }
+
+    logger.i("Getting multiplexed inventory");
+    try {
+      List<UhfInventoryResult>? tagList = await _reader?.muxInventory();
       tagList?.forEach((tagResult) {
         // Code to be executed for each element on the collection
         logger.i(tagResult.tag.epc);
@@ -164,11 +191,22 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget inventoryButton() {
     return ListTile(
         //leading: const Icon(Icons.usb),
-        title: const Text("Tags Inventory"),
+        title: const Text("Simple Inventory"),
         trailing: ElevatedButton(
             child: const Text("Scan"),
             onPressed: () {
-              doInventory();
+              doSimpleInventory();
+            }));
+  }
+
+  Widget multiplexInventoryButton() {
+    return ListTile(
+        //leading: const Icon(Icons.usb),
+        title: const Text("Multiplex Inventory"),
+        trailing: ElevatedButton(
+            child: const Text("Scan"),
+            onPressed: () {
+              doMultiplexInventory();
             }));
   }
 
@@ -187,6 +225,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 style: Theme.of(context).textTheme.titleLarge),
             ..._deviceList,
             _readerConnected ? inventoryButton() : const Text(""),
+            _readerConnected ? multiplexInventoryButton() : const Text(""),
           ],
         ),
       ),
